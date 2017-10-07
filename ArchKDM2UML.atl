@@ -4,6 +4,100 @@ create umlOutput : uml from kdmInput : kdm;
 -- Bruno César Gasparini --
 
 -- ### Helpers ### -- begin
+helper context kdm!Datatype def : isCollection() : Boolean =
+	if (self.name.oclIsUndefined()) then
+	false
+	else
+	if (self.name->startsWith('Collection')) then
+		true
+	else
+		if (self.oclIsTypeOf(kdm!TemplateType)) then
+			self->getTemplateUnit()->isCollection()
+		else
+			if (self.oclIsTypeOf(kdm!TemplateUnit)) then
+				self->getRealType()->isCollection()
+			else
+				if (self->getInheritanceLinks()->isEmpty()) then
+					false
+				else
+					let parents : Sequence(kdm!AbstractCodeRelationship) = self->getInheritanceLinks() in
+						parents->exists(parent | parent.to->isCollection())
+				endif
+			endif
+		endif
+	endif
+	endif;
+
+helper context kdm!Datatype def : isMap() : Boolean =
+	if (self.name.oclIsUndefined()) then
+	false
+	else
+	if (self.name->startsWith('Map')) then
+		true
+	else
+		if (self.oclIsTypeOf(kdm!TemplateType)) then
+			self->getTemplateUnit()->isMap()
+		else
+			if (self.oclIsTypeOf(kdm!TemplateUnit)) then
+				self->getRealType()->isMap()
+			else
+				if (self->getInheritanceLinks()->isEmpty()) then
+					false
+				else
+					let parents : Sequence(kdm!AbstractCodeRelationship) = self->getInheritanceLinks() in
+						parents->exists(parent | parent.to->isMap())
+				endif
+			endif
+		endif
+	endif
+	endif;
+				
+helper context kdm!TemplateType def : getTemplateUnit() : kdm!Datatype =
+	let link : kdm!InstanceOf = self.codeRelation->select(e | e.oclIsTypeOf(kdm!InstanceOf))->first() in
+	if (link.oclIsUndefined()) then
+		OclUndefined
+	else
+		if (link.to.oclIsUndefined()) then
+			let otherLink : kdm!HasType = self.codeRelation->select(e | e.oclIsTypeOf(kdm!HasType))->first() in
+			if (otherLink.oclIsUndefined()) then
+				OclUndefined
+			else
+				otherLink.to
+			endif
+		else
+			link.to
+		endif
+	endif;
+
+helper context kdm!TemplateUnit def : getRealType() : kdm!CodeItem =
+	self.codeElement->select(e | not e.oclIsTypeOf(kdm!TemplateParameter))->first();
+
+helper context kdm!InterfaceUnit def : getRealType() : kdm!Datatype =
+	self;
+
+helper context kdm!ClassUnit def : getRealType() : kdm!Datatype =
+	self;
+
+helper context kdm!Datatype def : getInheritanceLinks() : Sequence(kdm!AbstractCodeRelationship) = 
+	if ((self.oclIsTypeOf(kdm!EnumeratedType)) or (self.oclIsTypeOf(kdm!ClassUnit))
+			or (self.oclIsTypeOf(kdm!InterfaceUnit)) or (self.oclIsTypeOf(kdm!TemplateUnit))) then
+		self.codeRelation->select(e | e.oclIsTypeOf(kdm!Extends) or e.oclIsTypeOf(kdm!Implements))
+	else
+		Sequence{}
+	endif;
+	
+helper context kdm!TemplateType def : getTemplateTypeBinding() : kdm!Datatype =
+	let parameter : kdm!ParameterTo = self.codeRelation->select(e | e.oclIsTypeOf(kdm!ParameterTo))->last() in
+		if (parameter.to.oclIsTypeOf(kdm!TemplateType)) then
+			if (parameter.to->isCollection() or parameter.to->isMap()) then
+				parameter.to->getTemplateTypeBinding()
+			else
+				parameter.to
+			endif
+		else
+			parameter.to
+		endif;
+				
 helper context kdm!Datatype def : isPrimitiveType() : Boolean =
 	if (self.oclIsUndefined() or (self.oclIsKindOf(kdm!PrimitiveType))) then
 		true
@@ -133,7 +227,11 @@ helper context kdm!CodeItem def : getParent() : kdm!Package =
 
 --entrypoint rule test(){
 --	do {
---		kdm!Creates.allInstances()->select(p | p = p)->first().findRelationshipViolatedLayer().debug('aa');
+--		kdm!Layer.allInstances()
+--		->select(layer | 
+--			layer.getModelContainer().name = 'violations'
+--			and layer.implementation->exists(implementation | self.isDescendantOf(implementation))
+--		)->first();
 --	}
 --}
 
@@ -153,32 +251,14 @@ helper context kdm!KDMEntity def : findEntityViolatedLayer() : kdm!Layer =
 	kdm!Layer.allInstances()
 		->select(layer | 
 			layer.getModelContainer().name = 'violations'
-			and not (layer.inAggregated->isEmpty() and layer.outAggregated->isEmpty())
-			and (
-				layer.outAggregated->exists(
-					aggregated | aggregated.relation->exists(
-						relation | relation.from.isDescendantOf(self))) 
-				or
-				layer.inAggregated->exists(
-					aggregated | aggregated.relation->exists(
-						relation | relation.to.isDescendantOf(self)))
-			) 
+			and layer.implementation->exists(implementation | self.isDescendantOf(implementation))
 		)->first();
 
 helper context kdm!KDMRelationship def : findRelationshipViolatedLayer() : kdm!Layer =
 	kdm!Layer.allInstances()
 		->select(layer | 
 			layer.getModelContainer().name = 'violations'
-			and not (layer.inAggregated->isEmpty() and layer.outAggregated->isEmpty())
-			and (
-				layer.outAggregated->exists(
-					aggregated | aggregated.relation->exists(
-						relation | relation = self)) 
-				or
-				layer.inAggregated->exists(
-					aggregated | aggregated.relation->exists(
-						relation | relation = self))
-			) 
+			and layer.implementation->exists(implementation | self.isDescendantOf(implementation))
 		)->first();
 
 helper context kdm!Element def : getModelContainer() : kdm!CodeModel =
@@ -280,7 +360,9 @@ rule ExtendsToGeneralization {
 
 -- Implements transformation
 rule ImplementsToInterfaceRealization {
-	from src :kdm!Implements (src.isViolation())
+	from src :kdm!Implements (
+		src.refImmediateComposite().oclIsTypeOf(kdm!Package)
+		and src.isViolation())
 	to tgt :uml!InterfaceRealization (
 		supplier <- src.to.getViolation(),
 		client <- src.from.getViolation(),
