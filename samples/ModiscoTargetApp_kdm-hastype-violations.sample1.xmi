@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="ASCII"?>
+<kdm:Segment xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:action="http://www.eclipse.org/MoDisco/kdm/action" xmlns:code="http://www.eclipse.org/MoDisco/kdm/code" xmlns:kdm="http://www.eclipse.org/MoDisco/kdm/kdm" xmlns:source="http://www.eclipse.org/MoDisco/kdm/source" xmlns:structure="http://www.eclipse.org/MoDisco/kdm/structure">
+  <model xsi:type="code:CodeModel" name="ModiscoTargetApp">
+    <codeElement xsi:type="code:Package" name="PackageA">
+      <codeElement xsi:type="code:ClassUnit" name="ClassH" isAbstract="false">
+        <attribute tag="export" value="public"/>
+        <source language="java">
+          <region file="//@model.2/@inventoryElement.0" language="java"/>
+        </source>
+        <codeRelation xsi:type="code:Imports" to="//@model.0/@codeElement.1/@codeElement.2" from="//@model.0/@codeElement.0/@codeElement.0"/>
+        <codeRelation xsi:type="code:Imports" to="//@model.0/@codeElement.1/@codeElement.3" from="//@model.0/@codeElement.0/@codeElement.0"/>
+        <codeRelation xsi:type="code:Imports" to="//@model.0/@codeElement.1/@codeElement.0" from="//@model.0/@codeElement.0/@codeElement.0"/>
+        <codeRelation xsi:type="code:Imports" to="//@model.0/@codeElement.1/@codeElement.1" from="//@model.0/@codeElement.0/@codeElement.0"/>
+        <codeRelation xsi:type="code:Implements" to="//@model.0/@codeElement.1/@codeElement.3" from="//@model.0/@codeElement.0/@codeElement.0"/>
+        <codeRelation xsi:type="code:Extends" to="//@model.0/@codeElement.1/@codeElement.2" from="//@model.0/@codeElement.0/@codeElement.0"/>
+        <codeElement xsi:type="code:StorableUnit" name="attr" type="//@model.0/@codeElement.1/@codeElement.0">
+          <attribute tag="export" value="none"/>
+          <source language="java">
+            <region file="//@model.2/@inventoryElement.0" language="java"/>
+          </source>
+          <codeRelation xsi:type="code:HasType" to="//@model.0/@codeElement.1/@codeElement.0" from="//@model.0/@codeElement.0/@codeElement.0/@codeElement.0"/>
+        </codeElement>
+        <codeElement xsi:type="code:MethodUnit" name="main" type="//@model.0/@codeElement.0/@codeElement.0/@codeElement.1/@codeElement.0" export="protected">
+          <attribute tag="export" value="none"/>
+          <source language="java">
+            <region file="//@model.2/@inventoryElement.0" language="java"/>
+          </source>
+          <codeElement xsi:type="code:Signature" name="main">
+            <parameterUnit type="//@model.0/@codeElement.3/@codeElement.5" kind="return">
+              <source language="java">
+                <region language="java"/>
+              </source>
+              <codeRelation xsi:type="code:HasType" to="//@model.0/@codeElement.3/@codeElement.5" from="//@model.0/@codeElement.0/@codeElement.0/@codeElement.1/@codeElement.0/@parameterUnit.0"/>
+            </parameterUnit>
+          </codeElement>
+          <codeElement xsi:type="action:BlockUnit">
+            <source language="java">
+              <region file="//@model.2/@inventoryElement.0" language="java"/>
+            </source>
+            <codeElement xsi:type="action:ActionElement" name="variable declaration" kind="variable declaration">
+              <source language="java">
+                <region file="//@model.2/@inventoryElement.0" language="java"/>
+              </source>
+              <comment text="//Aggregated 2"/>
+              <codeElement xsi:type="code:StorableUnit" name="d" type="//@model.0/@codeElement.1/@codeElement.1" kind="local">
+                <attribute tag="export" value="none"/>
+                <source language="java">
+                  <region file="//@model.2/@inventoryElement.0" language="java"/>
+                </source>
+                <codeRelation xsi:type="code:HasType" to="//@model.0/@codeElement.1/@codeElement.1" from="//@model.0/@codeElement.0/@codeElement.0/@codeElement.1/@codeElement.1/@codeElement.0/@codeElement.0"/>
+              </codeElement>
+            </codeElement>
+            <codeElement xsi:type="action:ActionElement" name="expression statement" kind="expression statement">
+              <source language="java">
+                <region file="//@model.2/@inventoryElement.0" language="java"/>
+              </source>
+              <codeElement xsi:type="action:ActionElement" name="ASSIGN" kind="assignment">
+                <source language="java">
+                  <region file="//@model.2/@inventoryElement.0" language="java"/>
+                </source>
+                <codeElement xsi:type="action:ActionElement" name="class instance creation" kind="class instance creation">
+                  <source language="java">
+                    <region file="//@model.2/@inventoryElement.0" language="java"/>
+                  </source>
+                  <actionRelation xsi:type="action:Calls" to="//@model.0/@codeElement.1/@codeElement.1/@codeElement.0" from="//@model.0/@codeElement.0/@codeElement.0/@codeElement.1/@codeElement.1/@codeElement.1/@codeElement.0/@codeElement.0"/>
+                  <actionRelation xsi:type="action:Creates" to="//@model.0/@codeElement.1/@codeElement.1" from="//@model.0/@codeElement.0/@codeElement.0/@codeElement.1/@codeElement.1/@codeElement.1/@codeElement.0/@codeElement.0"/>
+                </codeElement>
+                <actionRelation xsi:type="action:Writes" to="//@model.0/@codeElement.0/@codeElement.0/@codeElement.1/@codeElement.1/@codeElement.0/@codeElement.0" from="//@model.0/@codeElement.0/@codeElement.0/@codeElement.1/@codeElement.1/@codeElement.1/@codeElement.0"/>
+              </codeElement>
+            </codeElement>
+          </codeElement>
+        </codeElement>
+      </codeElement>
+      <codeElement xsi:type="code:ClassUnit" name="ClassA" isAbstract="false">
+        <attribute tag="export" value="public"/>
+        <source language="java">
+          <region file="//@model.2/@inventoryElement.1" language="java"/>
+        </source>
+        <codeRelation xsi:type="code:Imports" to="//@model.0/@codeElement.1/@codeElement.2" from="//@model.0/@codeElement.0/@codeElement.1"/>
+        <codeRelation xsi:type="code:Imports" to="//@model.0/@codeElement.1/@codeElement.3" from="//@model.0/@codeElement.0/@codeElement.1"/>
+        <codeRelation xsi:type="code:Imports" to="//@model.0/@codeElement.1/@codeElement.0" from="//@model.0/@codeElement.0/@codeElement.1"/>
+        <codeRelation xsi:type="code:Imports" to="//@model.0/@codeElement.1/@codeElement.1" from="//@model.0/@codeElement.0/@codeElement.1"/>
+        <codeRelation xsi:type="code:Implements" to="//@model.0/@codeElement.1/@codeElement.3" from="//@model.0/@codeElement.0/@codeElement.1"/>
+        <codeRelation xsi:type="code:Extends" to="//@model.0/@codeElement.1/@codeElement.2" from="//@model.0/@codeElement.0/@codeElement.1"/>
+        <codeElement xsi:type="code:StorableUnit" name="attr" type="//@model.0/@codeElement.1/@codeElement.0">
+          <attribute tag="export" value="none"/>
+          <source language="java">
+            <region file="//@model.2/@inventoryElement.1" language="java"/>
+          </source>
+          <codeRelation xsi:type="code:HasType" to="//@model.0/@codeElement.1/@codeElement.0" from="//@model.0/@codeElement.0/@codeElement.1/@codeElement.0"/>
+        </codeElement>
+        <codeElement xsi:type="code:MethodUnit" name="main" type="//@model.0/@codeElement.0/@codeElement.1/@codeElement.1/@codeElement.0" export="protected">
+          <attribute tag="export" value="none"/>
+          <source language="java">
+            <region file="//@model.2/@inventoryElement.1" language="java"/>
+          </source>
+          <codeElement xsi:type="code:Signature" name="main">
+            <parameterUnit type="//@model.0/@codeElement.3/@codeElement.5" kind="return">
+              <source language="java">
+                <region language="java"/>
+              </source>
+              <codeRelation xsi:type="code:HasType" to="//@model.0/@codeElement.3/@codeElement.5" from="//@model.0/@codeElement.0/@codeElement.1/@codeElement.1/@codeElement.0/@parameterUnit.0"/>
+            </parameterUnit>
+          </codeElement>
+          <codeElement xsi:type="action:BlockUnit">
+            <source language="java">
+              <region file="//@model.2/@inventoryElement.1" language="java"/>
+            </source>
+            <codeElement xsi:type="action:ActionElement" name="variable declaration" kind="variable declaration">
+              <source language="java">
+                <region file="//@model.2/@inventoryElement.1" language="java"/>
+              </source>
+              <comment text="//Aggregated 2"/>
+              <codeElement xsi:type="code:StorableUnit" name="d" type="//@model.0/@codeElement.1/@codeElement.1" kind="local">
+                <attribute tag="export" value="none"/>
+                <source language="java">
+                  <region file="//@model.2/@inventoryElement.1" language="java"/>
+                </source>
+                <codeRelation xsi:type="code:HasType" to="//@model.0/@codeElement.1/@codeElement.1" from="//@model.0/@codeElement.0/@codeElement.1/@codeElement.1/@codeElement.1/@codeElement.0/@codeElement.0"/>
+              </codeElement>
+            </codeElement>
+            <codeElement xsi:type="action:ActionElement" name="expression statement" kind="expression statement">
+              <source language="java">
+                <region file="//@model.2/@inventoryElement.1" language="java"/>
+              </source>
+              <codeElement xsi:type="action:ActionElement" name="ASSIGN" kind="assignment">
+                <source language="java">
+                  <region file="//@model.2/@inventoryElement.1" language="java"/>
+                </source>
+                <codeElement xsi:type="action:ActionElement" name="class instance creation" kind="class instance creation">
+                  <source language="java">
+                    <region file="//@model.2/@inventoryElement.1" language="java"/>
+                  </source>
+                  <actionRelation xsi:type="action:Calls" to="//@model.0/@codeElement.1/@codeElement.1/@codeElement.0" from="//@model.0/@codeElement.0/@codeElement.1/@codeElement.1/@codeElement.1/@codeElement.1/@codeElement.0/@codeElement.0"/>
+                  <actionRelation xsi:type="action:Creates" to="//@model.0/@codeElement.1/@codeElement.1" from="//@model.0/@codeElement.0/@codeElement.1/@codeElement.1/@codeElement.1/@codeElement.1/@codeElement.0/@codeElement.0"/>
+                </codeElement>
+                <actionRelation xsi:type="action:Writes" to="//@model.0/@codeElement.0/@codeElement.1/@codeElement.1/@codeElement.1/@codeElement.0/@codeElement.0" from="//@model.0/@codeElement.0/@codeElement.1/@codeElement.1/@codeElement.1/@codeElement.1/@codeElement.0"/>
+              </codeElement>
+            </codeElement>
+          </codeElement>
+        </codeElement>
+      </codeElement>
+    </codeElement>
+    <codeElement xsi:type="code:Package" name="PackageB">
+      <codeElement xsi:type="code:ClassUnit" name="ClassD" isAbstract="false">
+        <attribute tag="export" value="public"/>
+        <source language="java">
+          <region file="//@model.2/@inventoryElement.2" language="java"/>
+        </source>
+      </codeElement>
+      <codeElement xsi:type="code:ClassUnit" name="ClassE" isAbstract="false">
+        <attribute tag="export" value="public"/>
+        <source language="java">
+          <region file="//@model.2/@inventoryElement.3" language="java"/>
+        </source>
+        <codeElement xsi:type="code:MethodUnit" name="ClassE" type="//@model.0/@codeElement.1/@codeElement.1/@codeElement.0/@codeElement.0" kind="constructor" export="unknown">
+          <source language="java">
+            <region language="java"/>
+          </source>
+          <codeElement xsi:type="code:Signature" name="ClassE"/>
+        </codeElement>
+      </codeElement>
+      <codeElement xsi:type="code:ClassUnit" name="ClassB" isAbstract="false">
+        <attribute tag="export" value="public"/>
+        <source language="java">
+          <region file="//@model.2/@inventoryElement.4" language="java"/>
+        </source>
+      </codeElement>
+      <codeElement xsi:type="code:InterfaceUnit" name="ClassC">
+        <attribute tag="export" value="public"/>
+        <source language="java">
+          <region file="//@model.2/@inventoryElement.5" language="java"/>
+        </source>
+      </codeElement>
+    </codeElement>
+    <codeElement xsi:type="code:Package" name="PackageC">
+      <codeElement xsi:type="code:ClassUnit" name="ClassG" isAbstract="false">
+        <attribute tag="export" value="public"/>
+        <source language="java">
+          <region file="//@model.2/@inventoryElement.6" language="java"/>
+        </source>
+        <codeElement xsi:type="code:MethodUnit" name="main" type="//@model.0/@codeElement.2/@codeElement.0/@codeElement.0/@codeElement.0">
+          <attribute tag="export" value="public"/>
+          <source language="java">
+            <region file="//@model.2/@inventoryElement.6" language="java"/>
+          </source>
+          <codeElement xsi:type="code:Signature" name="main">
+            <parameterUnit type="//@model.0/@codeElement.3/@codeElement.5" kind="return">
+              <source language="java">
+                <region language="java"/>
+              </source>
+              <codeRelation xsi:type="code:HasType" to="//@model.0/@codeElement.3/@codeElement.5" from="//@model.0/@codeElement.2/@codeElement.0/@codeElement.0/@codeElement.0/@parameterUnit.0"/>
+            </parameterUnit>
+            <parameterUnit name="args" type="//@model.1/@codeElement.1" kind="unknown">
+              <source language="java">
+                <region file="//@model.2/@inventoryElement.6" language="java"/>
+              </source>
+              <codeRelation xsi:type="code:HasType" to="//@model.1/@codeElement.1" from="//@model.0/@codeElement.2/@codeElement.0/@codeElement.0/@codeElement.0/@parameterUnit.1"/>
+            </parameterUnit>
+          </codeElement>
+          <codeElement xsi:type="action:BlockUnit">
+            <source language="java">
+              <region file="//@model.2/@inventoryElement.6" language="java"/>
+            </source>
+            <codeElement xsi:type="action:ActionElement" name="expression statement" kind="expression statement">
+              <source language="java">
+                <region file="//@model.2/@inventoryElement.6" language="java"/>
+              </source>
+              <codeElement xsi:type="action:ActionElement" name="class instance creation" kind="class instance creation">
+                <source language="java">
+                  <region file="//@model.2/@inventoryElement.6" language="java"/>
+                </source>
+                <codeElement xsi:type="code:ClassUnit" name="Anonymous type">
+                  <source language="java">
+                    <region file="//@model.2/@inventoryElement.6" language="java"/>
+                  </source>
+                  <codeRelation xsi:type="code:Imports" to="//@model.0/@codeElement.1/@codeElement.0" from="//@model.0/@codeElement.2/@codeElement.0"/>
+                  <codeRelation xsi:type="code:Implements" to="//@model.0/@codeElement.1/@codeElement.0" from="//@model.0/@codeElement.2/@codeElement.0/@codeElement.0/@codeElement.1/@codeElement.0/@codeElement.0/@codeElement.0"/>
+                  <codeElement xsi:type="code:MethodUnit" name="" type="//@model.0/@codeElement.2/@codeElement.0/@codeElement.0/@codeElement.1/@codeElement.0/@codeElement.0/@codeElement.0/@codeElement.0/@codeElement.0" kind="constructor" export="unknown">
+                    <source language="java">
+                      <region language="java"/>
+                    </source>
+                    <codeElement xsi:type="code:Signature" name=""/>
+                  </codeElement>
+                </codeElement>
+                <actionRelation xsi:type="action:Calls" to="//@model.0/@codeElement.2/@codeElement.0/@codeElement.0/@codeElement.1/@codeElement.0/@codeElement.0/@codeElement.0/@codeElement.0" from="//@model.0/@codeElement.2/@codeElement.0/@codeElement.0/@codeElement.1/@codeElement.0/@codeElement.0"/>
+                <actionRelation xsi:type="action:Creates" to="//@model.0/@codeElement.1/@codeElement.0" from="//@model.0/@codeElement.2/@codeElement.0/@codeElement.0/@codeElement.1/@codeElement.0/@codeElement.0"/>
+              </codeElement>
+            </codeElement>
+          </codeElement>
+        </codeElement>
+      </codeElement>
+    </codeElement>
+    <codeElement xsi:type="code:LanguageUnit" name="Common Java datatypes">
+      <codeElement xsi:type="code:IntegerType" name="int"/>
+      <codeElement xsi:type="code:IntegerType" name="long"/>
+      <codeElement xsi:type="code:FloatType" name="float"/>
+      <codeElement xsi:type="code:FloatType" name="double"/>
+      <codeElement xsi:type="code:BooleanType" name="boolean"/>
+      <codeElement xsi:type="code:VoidType" name="void"/>
+      <codeElement xsi:type="code:CharType" name="char"/>
+      <codeElement xsi:type="code:IntegerType" name="short"/>
+      <codeElement xsi:type="code:OctetType" name="byte"/>
+      <codeElement xsi:type="code:StringType" name="string"/>
+    </codeElement>
+  </model>
+  <model xsi:type="code:CodeModel" name="externals">
+    <codeElement xsi:type="code:Package" name="java">
+      <codeElement xsi:type="code:Package" name="lang">
+        <codeElement xsi:type="code:ClassUnit" name="String">
+          <source language="java">
+            <region language="java"/>
+          </source>
+          <codeRelation xsi:type="code:Implements" to="//@model.1/@codeElement.0/@codeElement.1/@codeElement.0" from="//@model.1/@codeElement.0/@codeElement.0/@codeElement.0"/>
+          <codeRelation xsi:type="code:Implements" to="//@model.1/@codeElement.0/@codeElement.0/@codeElement.1" from="//@model.1/@codeElement.0/@codeElement.0/@codeElement.0"/>
+          <codeRelation xsi:type="code:Implements" to="//@model.1/@codeElement.0/@codeElement.0/@codeElement.2" from="//@model.1/@codeElement.0/@codeElement.0/@codeElement.0"/>
+        </codeElement>
+        <codeElement xsi:type="code:TemplateUnit" name="Comparable&lt;T>">
+          <codeElement xsi:type="code:TemplateParameter" name="T"/>
+          <codeElement xsi:type="code:InterfaceUnit" name="Comparable">
+            <source language="java">
+              <region language="java"/>
+            </source>
+          </codeElement>
+        </codeElement>
+        <codeElement xsi:type="code:InterfaceUnit" name="CharSequence">
+          <source language="java">
+            <region language="java"/>
+          </source>
+        </codeElement>
+      </codeElement>
+      <codeElement xsi:type="code:Package" name="io">
+        <codeElement xsi:type="code:InterfaceUnit" name="Serializable">
+          <source language="java">
+            <region language="java"/>
+          </source>
+        </codeElement>
+      </codeElement>
+    </codeElement>
+    <codeElement xsi:type="code:ArrayType" name="java.lang.String[]" size="1">
+      <itemUnit type="//@model.1/@codeElement.0/@codeElement.0/@codeElement.0"/>
+      <indexUnit type="//@model.0/@codeElement.3/@codeElement.0"/>
+    </codeElement>
+  </model>
+  <model xsi:type="source:InventoryModel" name="source references">
+    <inventoryElement xsi:type="source:SourceFile" name="ClassH.java" path="/Users/Bruno/Desenvolvimento/EclipseWorkspace/ModiscoTargetApp/src/PackageA/ClassH.java" language="java"/>
+    <inventoryElement xsi:type="source:SourceFile" name="ClassA.java" path="/Users/Bruno/Desenvolvimento/EclipseWorkspace/ModiscoTargetApp/src/PackageA/ClassA.java" language="java"/>
+    <inventoryElement xsi:type="source:SourceFile" name="ClassD.java" path="/Users/Bruno/Desenvolvimento/EclipseWorkspace/ModiscoTargetApp/src/PackageB/ClassD.java" language="java"/>
+    <inventoryElement xsi:type="source:SourceFile" name="ClassE.java" path="/Users/Bruno/Desenvolvimento/EclipseWorkspace/ModiscoTargetApp/src/PackageB/ClassE.java" language="java"/>
+    <inventoryElement xsi:type="source:SourceFile" name="ClassB.java" path="/Users/Bruno/Desenvolvimento/EclipseWorkspace/ModiscoTargetApp/src/PackageB/ClassB.java" language="java"/>
+    <inventoryElement xsi:type="source:SourceFile" name="ClassC.java" path="/Users/Bruno/Desenvolvimento/EclipseWorkspace/ModiscoTargetApp/src/PackageB/ClassC.java" language="java"/>
+    <inventoryElement xsi:type="source:SourceFile" name="ClassG.java" path="/Users/Bruno/Desenvolvimento/EclipseWorkspace/ModiscoTargetApp/src/PackageC/ClassG.java" language="java"/>
+  </model>
+  <model xsi:type="structure:StructureModel" name="CompleteMap">
+    <structureElement xsi:type="structure:Subsystem" name="SubSystemS">
+      <structureElement xsi:type="structure:Layer" name="LayerA" inAggregated="//@model.3/@structureElement.0/@structureElement.0/@aggregated.1" outAggregated="//@model.3/@structureElement.0/@structureElement.0/@aggregated.0 //@model.3/@structureElement.0/@structureElement.0/@aggregated.1" implementation="//@model.0/@codeElement.0">
+        <aggregated from="//@model.3/@structureElement.0/@structureElement.0" to="//@model.3/@structureElement.0/@structureElement.1" relation="//@model.0/@codeElement.0/@codeElement.0/@codeElement.1/@codeElement.1/@codeElement.1/@codeElement.0/@codeElement.0/@actionRelation.0 //@model.0/@codeElement.0/@codeElement.1/@codeElement.1/@codeElement.1/@codeElement.1/@codeElement.0/@codeElement.0/@actionRelation.0 //@model.0/@codeElement.0/@codeElement.0/@codeElement.1/@codeElement.1/@codeElement.1/@codeElement.0/@codeElement.0/@actionRelation.1 //@model.0/@codeElement.0/@codeElement.1/@codeElement.1/@codeElement.1/@codeElement.1/@codeElement.0/@codeElement.0/@actionRelation.1 //@model.0/@codeElement.0/@codeElement.0/@codeRelation.5 //@model.0/@codeElement.0/@codeElement.1/@codeRelation.5 //@model.0/@codeElement.0/@codeElement.0/@codeElement.0/@codeRelation.0 //@model.0/@codeElement.0/@codeElement.0/@codeElement.1/@codeElement.1/@codeElement.0/@codeElement.0/@codeRelation.0 //@model.0/@codeElement.0/@codeElement.1/@codeElement.0/@codeRelation.0 //@model.0/@codeElement.0/@codeElement.1/@codeElement.1/@codeElement.1/@codeElement.0/@codeElement.0/@codeRelation.0 //@model.0/@codeElement.0/@codeElement.0/@codeRelation.4 //@model.0/@codeElement.0/@codeElement.1/@codeRelation.4 //@model.0/@codeElement.0/@codeElement.0/@codeRelation.0 //@model.0/@codeElement.0/@codeElement.0/@codeRelation.1 //@model.0/@codeElement.0/@codeElement.0/@codeRelation.2 //@model.0/@codeElement.0/@codeElement.0/@codeRelation.3 //@model.0/@codeElement.0/@codeElement.1/@codeRelation.0 //@model.0/@codeElement.0/@codeElement.1/@codeRelation.1 //@model.0/@codeElement.0/@codeElement.1/@codeRelation.2 //@model.0/@codeElement.0/@codeElement.1/@codeRelation.3" density="20"/>
+        <aggregated from="//@model.3/@structureElement.0/@structureElement.0" to="//@model.3/@structureElement.0/@structureElement.0" relation="//@model.0/@codeElement.0/@codeElement.0/@codeElement.1/@codeElement.1/@codeElement.1/@codeElement.0/@actionRelation.0 //@model.0/@codeElement.0/@codeElement.1/@codeElement.1/@codeElement.1/@codeElement.1/@codeElement.0/@actionRelation.0" density="2"/>
+      </structureElement>
+      <structureElement xsi:type="structure:Layer" name="LayerB" inAggregated="//@model.3/@structureElement.0/@structureElement.0/@aggregated.0 //@model.3/@structureElement.0/@structureElement.2/@aggregated.0" implementation="//@model.0/@codeElement.1"/>
+      <structureElement xsi:type="structure:Layer" name="LayerC" outAggregated="//@model.3/@structureElement.0/@structureElement.2/@aggregated.0" implementation="//@model.0/@codeElement.2">
+        <aggregated from="//@model.3/@structureElement.0/@structureElement.2" to="//@model.3/@structureElement.0/@structureElement.1" relation="//@model.0/@codeElement.2/@codeElement.0/@codeElement.0/@codeElement.1/@codeElement.0/@codeElement.0/@actionRelation.1" density="1"/>
+      </structureElement>
+    </structureElement>
+  </model>
+  <model xsi:type="structure:StructureModel" name="violations">
+    <structureElement xsi:type="structure:Subsystem" name="SubSystemS">
+      <structureElement xsi:type="structure:Layer" name="LayerA" outAggregated="//@model.4/@structureElement.0/@structureElement.0/@aggregated.0 //@model.4/@structureElement.0/@structureElement.0/@aggregated.1 //@model.4/@structureElement.0/@structureElement.0/@aggregated.2 //@model.4/@structureElement.0/@structureElement.0/@aggregated.3 //@model.4/@structureElement.0/@structureElement.0/@aggregated.4 //@model.4/@structureElement.0/@structureElement.0/@aggregated.5 //@model.4/@structureElement.0/@structureElement.0/@aggregated.6 //@model.4/@structureElement.0/@structureElement.0/@aggregated.7" implementation="//@model.0/@codeElement.0">
+        <aggregated from="//@model.4/@structureElement.0/@structureElement.0" to="//@model.4/@structureElement.0/@structureElement.1" relation="//@model.0/@codeElement.0/@codeElement.0/@codeElement.1/@codeElement.1/@codeElement.1/@codeElement.0/@codeElement.0/@actionRelation.0 //@model.0/@codeElement.0/@codeElement.0/@codeElement.1/@codeElement.1/@codeElement.1/@codeElement.0/@codeElement.0/@actionRelation.1 //@model.0/@codeElement.0/@codeElement.0/@codeRelation.3 //@model.0/@codeElement.0/@codeElement.0/@codeElement.1/@codeElement.1/@codeElement.0/@codeElement.0/@codeRelation.0" density="4"/>
+        <aggregated from="//@model.4/@structureElement.0/@structureElement.0" to="//@model.4/@structureElement.0/@structureElement.1" relation="//@model.0/@codeElement.0/@codeElement.1/@codeElement.1/@codeElement.1/@codeElement.1/@codeElement.0/@codeElement.0/@actionRelation.0 //@model.0/@codeElement.0/@codeElement.1/@codeElement.1/@codeElement.1/@codeElement.1/@codeElement.0/@codeElement.0/@actionRelation.1 //@model.0/@codeElement.0/@codeElement.1/@codeRelation.3 //@model.0/@codeElement.0/@codeElement.1/@codeElement.1/@codeElement.1/@codeElement.0/@codeElement.0/@codeRelation.0" density="4"/>
+        <aggregated from="//@model.4/@structureElement.0/@structureElement.0" to="//@model.4/@structureElement.0/@structureElement.1" relation="//@model.0/@codeElement.0/@codeElement.0/@codeRelation.5 //@model.0/@codeElement.0/@codeElement.0/@codeRelation.0" density="2"/>
+        <aggregated from="//@model.4/@structureElement.0/@structureElement.0" to="//@model.4/@structureElement.0/@structureElement.1" relation="//@model.0/@codeElement.0/@codeElement.1/@codeRelation.5 //@model.0/@codeElement.0/@codeElement.1/@codeRelation.0" density="2"/>
+        <aggregated from="//@model.4/@structureElement.0/@structureElement.0" to="//@model.4/@structureElement.0/@structureElement.1" relation="//@model.0/@codeElement.0/@codeElement.0/@codeElement.0/@codeRelation.0 //@model.0/@codeElement.0/@codeElement.0/@codeRelation.2" density="2"/>
+        <aggregated from="//@model.4/@structureElement.0/@structureElement.0" to="//@model.4/@structureElement.0/@structureElement.1" relation="//@model.0/@codeElement.0/@codeElement.1/@codeElement.0/@codeRelation.0 //@model.0/@codeElement.0/@codeElement.1/@codeRelation.2" density="2"/>
+        <aggregated from="//@model.4/@structureElement.0/@structureElement.0" to="//@model.4/@structureElement.0/@structureElement.1" relation="//@model.0/@codeElement.0/@codeElement.0/@codeRelation.4 //@model.0/@codeElement.0/@codeElement.0/@codeRelation.1" density="2"/>
+        <aggregated from="//@model.4/@structureElement.0/@structureElement.0" to="//@model.4/@structureElement.0/@structureElement.1" relation="//@model.0/@codeElement.0/@codeElement.1/@codeRelation.4 //@model.0/@codeElement.0/@codeElement.1/@codeRelation.1" density="2"/>
+      </structureElement>
+      <structureElement xsi:type="structure:Layer" name="LayerB" inAggregated="//@model.4/@structureElement.0/@structureElement.0/@aggregated.0 //@model.4/@structureElement.0/@structureElement.0/@aggregated.1 //@model.4/@structureElement.0/@structureElement.0/@aggregated.2 //@model.4/@structureElement.0/@structureElement.0/@aggregated.3 //@model.4/@structureElement.0/@structureElement.0/@aggregated.4 //@model.4/@structureElement.0/@structureElement.0/@aggregated.5 //@model.4/@structureElement.0/@structureElement.0/@aggregated.6 //@model.4/@structureElement.0/@structureElement.0/@aggregated.7" implementation="//@model.0/@codeElement.1"/>
+      <structureElement xsi:type="structure:Layer" name="LayerC" implementation="//@model.0/@codeElement.2"/>
+    </structureElement>
+  </model>
+</kdm:Segment>
