@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/5.0.0/UML platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore">
+  <uml:Model xmi:id="a1" name="violations">
+    <packagedElement xmi:type="uml:Package" xmi:id="a2" name="&lt;Subsystem>SubSystemS">
+      <packagedElement xmi:type="uml:Package" xmi:id="a3" name="&lt;Layer>LayerA">
+        <packagedElement xmi:type="uml:Package" xmi:id="a4" name="PackageA" visibility="public"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="a5" name="&lt;Layer>LayerB">
+        <packagedElement xmi:type="uml:Package" xmi:id="a6" name="PackageB" visibility="public"/>
+      </packagedElement>
+    </packagedElement>
+  </uml:Model>
+  <uml:Dependency xmi:id="a7" client="a3" supplier="a5"/>
+</xmi:XMI>

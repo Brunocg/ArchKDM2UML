@@ -327,7 +327,7 @@ helper context kdm!KDMEntity def: findViolatedStructure(): kdm!AbstractStructure
 	if kdm!AbstractStructureElement.allInstances() -> exists(structure | structure.getModelContainer().name = 'violations' and structure.implementation -> exists(impl | impl = self)) then
 		kdm!AbstractStructureElement.allInstances() -> select(structure | structure.getModelContainer().name = 'violations' and structure.implementation -> exists(impl | impl = self)) -> first()
 	else
-		if self.refImmediateComposite().oclIsTypeOf(kdm!CodeModel) then
+		if self.refImmediateComposite().oclIsTypeOf(kdm!StructureModel) then
 			OclUndefined
 		else
 			self.refImmediateComposite().findViolatedStructure()
@@ -439,183 +439,27 @@ rule ModuleToPackage {
 	}
 }
 
--- Extends transformation
-rule ExtendsToGeneralization {
-	from
-		src: kdm!Extends (
-			src.isViolation()
-		)
-	to
-		tgt: uml!Generalization (
-			general <- src.to.getViolation()
-		)
-	do {
-		src.refImmediateComposite().getViolation().generalization <- tgt;
-	}
-}
+helper def : dependencies : Map(kdm!AbstractStructureElement, kdm!AbstractStructureElement) = Map{};
 
--- Implements transformation
-rule ImplementsToInterfaceRealization {
-	from
-		src: kdm!Implements (
-			src.isViolation()
-		)
-	to
-		tgt: uml!InterfaceRealization (
-			supplier <- src.to.getViolation(),
-			client <- src.from.getViolation(),
-			contract <- src.to.getViolation()
-		)
-	do {
-		src.refImmediateComposite().getViolation().interfaceRealization <- tgt;
-	}
+unique lazy rule createDependency{
+   from
+     src: kdm!AggregatedRelationship
+   to 
+     tgt: uml!Dependency (
+		client <- src.from,
+		supplier <- src.to
+	)
 }
 
 rule AggregatedRelationshipToDependency {
 	from
 		src: kdm!AggregatedRelationship (
-			src.getModelContainer().name = 'violations' and src.relation -> exists(e |
-					not e.oclIsKindOf(kdm!Extends) and not e.oclIsKindOf(kdm!Implements)
-					and not e.oclIsKindOf(kdm!Imports) and not (e.
-					oclIsKindOf(kdm!HasType) and e.refImmediateComposite().
-					refImmediateComposite().oclIsKindOf(kdm!ClassUnit)) and (e.
-					oclIsKindOf(kdm!HasType) or e.oclIsKindOf(kdm!Calls) or e.
-					oclIsKindOf(kdm!Creates)))
-		)
-	using {
-		srcClass: kdm!ClassUnit = src.relation -> first().from.getClassContainer();
-		destClass: kdm!ClassUnit = src.relation -> first().to.getClassContainer();
-		comment: String = '';
-	}
-	to
-		tgt: uml!Dependency (
-			client <- srcClass.getViolation(),
-			supplier <- destClass.getViolation(),
-			ownedComment <- commentUML
-		),
-		commentUML: uml!Comment (
-			annotatedElement <- src
+			src.getModelContainer().name = 'violations' and src.relation -> notEmpty()
 		)
 	do {
-		for (relation in src.relation) {
-			if (relation.oclIsKindOf(kdm!HasType)) {
-				comment <- comment.concat(relation.refImmediateComposite().type.name).
-						concat(' ').concat(relation.refImmediateComposite().name).
-						concat(';\n--------------\n');
-			}
-			if (relation.oclIsKindOf(kdm!Creates)) {
-				if (relation.refImmediateComposite().refImmediateComposite().
-						actionRelation -> exists(e | e.oclIsKindOf(kdm!Writes))) {
-					comment <- comment.concat(relation.refImmediateComposite().
-							refImmediateComposite().actionRelation -> select(e | e.
-							oclIsKindOf(kdm!Writes)) -> first().to.name).concat(' = ');
-				}
-					
-				comment <- comment.concat('new ').concat(relation.to.name).
-						concat('();\n--------------\n');
-			}
+		if (thisModule.dependencies -> get(src.from).oclIsUndefined()) {
+			thisModule.createDependency(src);
 		}
-		tgt.ownedComment -> first().body <- comment;
-		srcClass.getParent().getViolation().packagedElement <- tgt;
-	}
-}
-
-lazy rule DataElementToAssociation {
-	from
-		src: kdm!DataElement
-	to
-		tgt: uml!Association (
-			memberEnd <- src.getViolation(),
-			memberEnd <- targetProperty,
-			ownedEnd <- targetProperty
-		),
-		targetProperty: uml!Property (
-			type <- src.getParent().getViolation()
-		)
-	do {
-		src -> getParent().getParent().getViolation().packagedElement <- tgt;
-	}
-}
-
-rule StorableUnitToProperty {
-	from
-		src: kdm!StorableUnit (
-			not (src.kind = #local) and not
-					(src.refImmediateComposite().oclIsTypeOf(kdm!CodeModel)) --
-					-- Unresolved items
-			 and src.isViolation()
-		)
-	to
-		tgt: uml!Property (
-			name <- src.name,
-			visibility <- src -> getVisibility(),
-			type <- src -> getDataElementType().getViolation(),
-			isStatic <- if (src.kind = #static) then
-					true
-				else
-					false
-				endif,
-			lowerValue <- lower,
-			upperValue <- upper
-		),
-		lower: uml!LiteralInteger (
-			value <- src.getLowerCardinality()
-		),
-		upper: uml!LiteralUnlimitedNatural (
-			value <- src.getUpperCardinality()
-		)
-	do {
-		src.refImmediateComposite().getViolation().ownedAttribute <- tgt;
-		
-		if (not (src -> getDataElementType().oclIsUndefined())) {
-			if (not (src -> getDataElementType() -> isPrimitiveType())) {
-				thisModule -> DataElementToAssociation(src);
-			}
-		}
-	}
-}
-
--- InterfaceUnit transformation
-rule InterfaceUnitToInterface {
-	from
-		src: kdm!InterfaceUnit (
-			not src.refImmediateComposite().oclIsTypeOf(kdm!TemplateUnit) and src.
-					refImmediateComposite().oclIsTypeOf(kdm!Package) and src.isViolation()
-		)
-	to
-		tgt: uml!Interface (
-			name <- src.name,
-			visibility <- src -> getVisibility() -- specific case to manage templated
-					-- methods (wrapped in a TemplateUnit (abstract class))
---		nestedClassifier <- src.codeElement->select(e | e.oclIsKindOf(kdm!Datatype))
---				->select(e | if (e.oclIsTypeOf(kdm!TemplateUnit)) then not
-		-- (e->getRealType().oclIsTypeOf(kdm!MethodUnit)) else true endif)
---		,generalization <- src.codeRelation->select(e | e.oclIsTypeOf(kdm!Extends))
---		,ownedOperation <- src.codeElement->select(e | e.oclIsTypeOf(kdm!MethodUnit))
---		,ownedAttribute <- src.codeElement->select(e | e.oclIsKindOf(kdm!DataElement))
-			
-		)
-	do {
-		src -> getParent().getViolation().packagedElement <- tgt;
-	}
-}
-
--- ClassUnit transformation
-rule ClassUnitToClass {
-	from
-		src: kdm!ClassUnit (
-			src.refImmediateComposite().oclIsTypeOf(kdm!Package) and not src.
-					refImmediateComposite().oclIsTypeOf(kdm!StorableUnit) and not src.
-					refImmediateComposite().oclIsTypeOf(kdm!TemplateUnit) and src.
-					isViolation()
-		)
-	to
-		tgt: uml!Class (
-			name <- src.name,
-			visibility <- src -> getVisibility(),
-			isAbstract <- src.isAbstract
-		)
-	do {
-		src -> getParent().getViolation().packagedElement <- tgt;
+		thisModule.dependencies <- thisModule.dependencies -> including(src.from, src.to);
 	}
 }
