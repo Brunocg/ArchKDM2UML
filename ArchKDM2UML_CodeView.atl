@@ -1,4 +1,4 @@
-module KDM2UML;
+module ArchKDM2UML_CodeView;
 create umlOutput: uml from kdmInput: kdm;
 
 -- Bruno César Gasparini --
