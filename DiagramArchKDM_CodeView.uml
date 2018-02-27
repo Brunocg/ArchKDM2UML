@@ -1,56 +1,86 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/5.0.0/UML platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore" xmi:id="a1" name="violations">
-  <packagedElement xmi:type="uml:Package" xmi:id="a2" name="&lt;Subsystem>SubSystemS">
-    <packagedElement xmi:type="uml:Package" xmi:id="a3" name="&lt;Layer>LayerA">
-      <packagedElement xmi:type="uml:Package" xmi:id="a4" name="PackageA" visibility="public">
-        <packagedElement xmi:type="uml:Dependency" xmi:id="a5" client="a13" supplier="a29">
-          <ownedComment xmi:type="uml:Comment" xmi:id="a6" annotatedElement="a5">
-            <body>d = new ClassE();
---------------
-ClassE d;
---------------
-</body>
-          </ownedComment>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Dependency" xmi:id="a7" client="a19" supplier="a29">
-          <ownedComment xmi:type="uml:Comment" xmi:id="a8" annotatedElement="a7">
-            <body>d = new ClassE();
---------------
-ClassE d;
---------------
-</body>
-          </ownedComment>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Association" xmi:id="a9" memberEnd="a15 a10">
-          <ownedEnd xmi:type="uml:Property" xmi:id="a10" type="a13" association="a9"/>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Association" xmi:id="a11" memberEnd="a21 a12">
-          <ownedEnd xmi:type="uml:Property" xmi:id="a12" type="a19" association="a11"/>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="a13" name="ClassH" visibility="public">
-          <generalization xmi:type="uml:Generalization" xmi:id="a14" general="a30"/>
-          <ownedAttribute xmi:type="uml:Property" xmi:id="a15" name="attr" visibility="public" type="a28" association="a9">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a16"/>
-            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="a17" value="1"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="a2" name="&lt;Subsystem>myAppointments">
+    <packagedElement xmi:type="uml:Package" xmi:id="a3" name="&lt;Layer>model">
+      <packagedElement xmi:type="uml:Package" xmi:id="a4" name="&lt;Layer>dao">
+        <packagedElement xmi:type="uml:Class" xmi:id="a5" name="DB" visibility="public">
+          <ownedAttribute xmi:type="uml:Property" xmi:id="a6" name="connection" visibility="public" isStatic="true" association="a17">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a7"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="a8" value="1"/>
           </ownedAttribute>
-          <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="a18" client="a13" supplier="a27" contract="a27"/>
         </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="a19" name="ClassA" visibility="public">
-          <generalization xmi:type="uml:Generalization" xmi:id="a20" general="a30"/>
-          <ownedAttribute xmi:type="uml:Property" xmi:id="a21" name="attr" visibility="public" type="a28" association="a11">
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a22"/>
-            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="a23" value="1"/>
-          </ownedAttribute>
-          <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="a24" client="a19" supplier="a27" contract="a27"/>
+        <packagedElement xmi:type="uml:Class" xmi:id="a9" name="AgendaDAO" visibility="public"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="a10" name="&lt;Layer>domain">
+        <packagedElement xmi:type="uml:Package" xmi:id="a11" name="domain" visibility="public">
+          <packagedElement xmi:type="uml:Class" xmi:id="a12" name="Appointment" visibility="public"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="a13" name="AppointmentException" visibility="public"/>
+          <packagedElement xmi:type="uml:Class" xmi:id="a14" name="AppointmentUtils" visibility="public"/>
+          <packagedElement xmi:type="uml:Interface" xmi:id="a15" name="AppointmentListInterface" visibility="public"/>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="a16" name="model" visibility="public">
+        <packagedElement xmi:type="uml:Association" xmi:id="a17" memberEnd="a6 a18">
+          <ownedEnd xmi:type="uml:Property" xmi:id="a18" type="a5" association="a17"/>
         </packagedElement>
       </packagedElement>
     </packagedElement>
-    <packagedElement xmi:type="uml:Package" xmi:id="a25" name="&lt;Layer>LayerB">
-      <packagedElement xmi:type="uml:Package" xmi:id="a26" name="PackageB" visibility="public">
-        <packagedElement xmi:type="uml:Interface" xmi:id="a27" name="ClassC" visibility="public"/>
-        <packagedElement xmi:type="uml:Class" xmi:id="a28" name="ClassD" visibility="public"/>
-        <packagedElement xmi:type="uml:Class" xmi:id="a29" name="ClassE" visibility="public"/>
-        <packagedElement xmi:type="uml:Class" xmi:id="a30" name="ClassB" visibility="public"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="a19" name="&lt;Component>util">
+      <packagedElement xmi:type="uml:Package" xmi:id="a20" name="util" visibility="public">
+        <packagedElement xmi:type="uml:Class" xmi:id="a21" name="DomainUtils" visibility="public">
+          <ownedAttribute xmi:type="uml:Property" xmi:id="a22" name="self" visibility="public" isStatic="true" type="a12" association="a35">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a23"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="a24" value="1"/>
+          </ownedAttribute>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="a25" name="ExtendedAppointment" visibility="public">
+          <generalization xmi:type="uml:Generalization" xmi:id="a26" general="a12"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="a27" name="NewAppointment" visibility="public">
+          <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="a28" client="a27" supplier="a15" contract="a15"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Dependency" xmi:id="a29" client="a21" supplier="a14">
+          <ownedComment xmi:type="uml:Comment" xmi:id="a30" annotatedElement="a29">
+            <body>[object/class].createAppointment();
+************************
+</body>
+          </ownedComment>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Dependency" xmi:id="a31" client="a21" supplier="a12">
+          <ownedComment xmi:type="uml:Comment" xmi:id="a32" annotatedElement="a31">
+            <body>import Appointment;
+************************
+Appointment appointment;
+************************
+Appointment asAppointment([parameters]);
+************************
+[return type] setAppointment(Appointment appointment);
+************************
+(Appointment) [object];
+************************
+[object] instanceof Appointment;
+************************
+new Appointment();
+************************
+[object/class].getTitle();
+************************
+</body>
+          </ownedComment>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Dependency" xmi:id="a33" client="a21" supplier="a13">
+          <ownedComment xmi:type="uml:Comment" xmi:id="a34" annotatedElement="a33">
+            <body>import AppointmentException;
+************************
+[return type] asAppointment([parameters]) throws AppointmentException;
+************************
+new AppointmentException();
+************************
+</body>
+          </ownedComment>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Association" xmi:id="a35" memberEnd="a22 a36">
+          <ownedEnd xmi:type="uml:Property" xmi:id="a36" type="a21" association="a35"/>
+        </packagedElement>
       </packagedElement>
     </packagedElement>
   </packagedElement>
